@@ -42,4 +42,10 @@ module.exports = (grunt) ->
 				files: '*.coffee'
 				tasks: ['coffeelint', 'coffee', 'uglify']
 
-	grunt.registerTask 'default', ['coffeelint', 'coffee', 'uglify', 'watch']
+	grunt.registerTask 'default', [
+		'bower_concat'
+		'coffeelint'
+		'coffee'
+		'uglify'
+		'watch'
+		]
