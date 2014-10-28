@@ -4,6 +4,7 @@ $.fn.extend
 	Slider: (options) ->
 		# Default Settings
 		settings =
+			animation: 'slide'
 			speed: 500
 			delay: 3000
 			pause: true
