@@ -60,3 +60,8 @@ $.fn.extend
 			$this.click (event) ->
 				do event.preventDefault
 				do next
+
+			if settings.autoplay
+				setInterval ->
+					do next
+				, settings.delay

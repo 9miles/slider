@@ -63,10 +63,15 @@
             return container.animate('left', "-" + (100 * (position - 1)) + "%");
           }
         };
-        return $this.click(function(event) {
+        $this.click(function(event) {
           event.preventDefault();
           return next();
         });
+        if (settings.autoplay) {
+          return setInterval(function() {
+            return next();
+          }, settings.delay);
+        }
       });
     }
   });
