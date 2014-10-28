@@ -1,7 +1,7 @@
 {
   "name": "Slider",
-  "version": "0.1.0",
-  "description": "Slider ======",
+  "version": "0.1.1",
+  "description": "Slider",
   "main": "slider.coffee",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
