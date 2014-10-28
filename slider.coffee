@@ -10,7 +10,7 @@ $.fn.extend
 			pause: true
 			loop: true
 			easing: 'ease'
-			debug: false
+			debug: true
 			autoplay: true
 
 		settings = $.extend settings, options
