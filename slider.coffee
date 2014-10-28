@@ -36,9 +36,6 @@ $.fn.extend
 			$this.click (event) ->
 				do event.preventDefault
 
-				if position < slides
-					position = position + 1
-				else
-					position = 1
+				if position < slides then position = position + 1 else position = 1
 
 				list.css('left', "-#{100 * (position-1)}%")
