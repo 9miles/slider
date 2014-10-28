@@ -21,17 +21,24 @@ $.fn.extend
 			console?.log msg if settings.debug
 
 		return @each () ->
-			slides = 0
 
 			$this = $(@)
 
-			$this.find('li').each ->
-				slides = slides + 1
+			position = 1
+			list = $this.find('ul')
+			items = $this.find('ul li')
+			slides = items.length
 
-			$this.find('li').css(
-				"width": "#{100/slides}%"
-			)
+			items.css('width', "#{100/slides}%")
 
-			$this.find('ul').css(
-				"width": "#{100*slides}%"
-			)
+			list.css('width', "#{100*slides}%")
+
+			$this.click (event) ->
+				do event.preventDefault
+
+				if position < slides
+					position = position + 1
+				else
+					position = 1
+
+				list.css('left', "-#{100 * (position-1)}%")
