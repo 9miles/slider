@@ -19,4 +19,17 @@ $.fn.extend
 			console?.log msg if settings.debug
 
 		return @each () ->
-			
+			slides = 0
+
+			$this = $(@)
+
+			$this.find('li').each ->
+				slides = slides + 1
+
+			$this.find('li').css(
+				"width": "#{100/slides}%"
+			)
+
+			$this.find('ul').css(
+				"width": "#{100*slides}%"
+			)
