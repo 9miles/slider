@@ -1,0 +1,31 @@
+{
+  "name": "Slider",
+  "version": "0.1.0",
+  "description": "Slider ======",
+  "main": "slider.coffee",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joeldrapper/Slider.git"
+  },
+  "keywords": [
+    "carousel",
+    "slider",
+    "slideshow",
+    "jquery"
+  ],
+  "author": "9miles Media",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/joeldrapper/Slider/issues"
+  },
+  "homepage": "https://github.com/joeldrapper/Slider",
+  "devDependencies": {
+    "bower": "^1.3.12",
+    "grunt": "^0.4.5",
+    "grunt-bower-concat": "^0.4.0",
+    "load-grunt-tasks": "^1.0.0"
+  }
+}
