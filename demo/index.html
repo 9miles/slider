@@ -57,6 +57,14 @@
 	<script>
 		$('document').ready(function(){
 			$('.slider').slider();
+			$('.slider-next').click(function(event){
+				event.preventDefault();
+				$('.slider').slider(next);
+			});
+			$('.slider-next').click(function(event){
+				event.preventDefault();
+				$('.slider').slider(prev);
+			});
 		});
 	</script>
 
