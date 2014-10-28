@@ -12,6 +12,8 @@ $.fn.extend
 			easing: 'ease'
 			debug: true
 			autoplay: true
+			nextClass: 'slider-next'
+			prevClass: 'slider-prev'
 
 		settings = $.extend settings, options
 
