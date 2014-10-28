@@ -46,18 +46,26 @@ $.fn.extend
 				'display': 'block'
 				'float': 'left'
 
-			next = ->
-				if position < length then position = position + 1 else position = 1
+			go = (target) ->
+				if target <= length
 
-				if Modernizr.csstransforms and Modernizr.csstransitions
-					container.css('transform', "translateX(-#{100 / length * (position-1)}%)")
-				else
-					container.animate('left', "-#{100 * (position-1)}%")
+					if Modernizr.csstransforms and Modernizr.csstransitions
+						container.css('transform', "translateX(-#{100 / length * (target-1)}%)")
+					else
+						container.animate('left', "-#{100 * (target-1)}%")
+
+					position = target
+
+			next = ->
+				if position < length then go position + 1 else go 1
+
+			prev = ->
+				if position > 1 then go position - 1 else go length
 
 			# Temporary measure to run the next function on click
 			$this.click (event) ->
 				do event.preventDefault
-				do next
+				do prev
 
 			# Autoplay
 			if settings.autoplay

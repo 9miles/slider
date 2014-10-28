@@ -21,7 +21,7 @@
         }
       };
       return this.each(function() {
-        var $this, container, length, next, position, ratio, slide;
+        var $this, container, go, length, next, position, prev, ratio, slide;
         $this = $(this);
         container = $this.find('ul');
         slide = $this.find('ul li');
@@ -51,21 +51,33 @@
           'display': 'block',
           'float': 'left'
         });
+        go = function(target) {
+          if (target <= length) {
+            if (Modernizr.csstransforms && Modernizr.csstransitions) {
+              container.css('transform', "translateX(-" + (100 / length * (target - 1)) + "%)");
+            } else {
+              container.animate('left', "-" + (100 * (target - 1)) + "%");
+            }
+            return position = target;
+          }
+        };
         next = function() {
           if (position < length) {
-            position = position + 1;
+            return go(position + 1);
           } else {
-            position = 1;
+            return go(1);
           }
-          if (Modernizr.csstransforms && Modernizr.csstransitions) {
-            return container.css('transform', "translateX(-" + (100 / length * (position - 1)) + "%)");
+        };
+        prev = function() {
+          if (position > 1) {
+            return go(position - 1);
           } else {
-            return container.animate('left', "-" + (100 * (position - 1)) + "%");
+            return go(length);
           }
         };
         $this.click(function(event) {
           event.preventDefault();
-          return next();
+          return prev();
         });
         if (settings.autoplay) {
           return setInterval(function() {
