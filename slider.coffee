@@ -7,6 +7,9 @@ $.fn.extend
 			debug: true
 			delay: 3000
 			autoplay: true
+			width: 16
+			height: 9
+			start: 1
 
 		settings = $.extend settings, options
 
@@ -17,22 +20,42 @@ $.fn.extend
 
 			$this = $(@)
 
-			position = 1
-			list = $this.find('ul')
-			items = $this.find('ul li')
-			slides = items.length
+			container = $this.find('ul')
+			slides = $this.find('ul li')
+			length = slides.length
+			ratio = settings.height / settings.width * 100
 
-			items.css('width', "#{100/slides}%")
+			if settings.start <= length then position = settings.start else position = 1
 
-			list.css('width', "#{100*slides}%")
+			$this.css(
+				'width': '100%'
+				'overflow': 'hidden'
+				'height': 0
+				'padding-bottom': "#{ratio}%"
+				'position': 'relative'
+			)
+
+			container.css(
+				'width': "#{100*length}%"
+				'height': '100%'
+				'position': 'absolute'
+				'transition': '.4s ease all'
+				)
+
+			slides.css(
+				'width': "#{100/length}%"
+				'height': '100%'
+				'display': 'block'
+				'float': 'left'
+				)
 
 			next = ->
-				if position < slides then position = position + 1 else position = 1
+				if position < length then position = position + 1 else position = 1
 
 				if Modernizr.csstransforms and Modernizr.csstransitions
-					list.css('transform', "translateX(-#{100 / slides * (position-1)}%)")
+					container.css('transform', "translateX(-#{100 / length * (position-1)}%)")
 				else
-					list.animate('left', "-#{100 * (position-1)}%")
+					container.animate('left', "-#{100 * (position-1)}%")
 
 			$this.click (event) ->
 				do event.preventDefault

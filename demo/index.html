@@ -5,27 +5,13 @@
 
 	<style>
 
-		.slider {
-			position: relative;
-			height: 300px;
-			width: 100%;
-			overflow: hidden;
-		}
-
 		.slider ul {
-			position: absolute;
 			margin: 0;
 			padding: 0;
-			height: 300px;
 			list-style-type: none;
-			background-color: red;
-			transition: .2s ease all;
 		}
 
 		.slider ul li {
-			display: block;
-			float: left;
-			height: 300px;
 			background-size: cover;
 			background-position: center center;
 			background-repeat: no-repeat;
@@ -57,7 +43,10 @@
 
 	<script>
 		$('document').ready(function(){
-			$('.slider').slider();
+			$('.slider').slider({
+				width: 1440,
+				height: 500
+			});
 			$('.slider-next').click(function(event){
 				event.preventDefault();
 				$('.slider').slider(next);
