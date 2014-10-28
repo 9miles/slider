@@ -3,6 +3,35 @@
 	<script type="text/javascript" src="_bower.js"></script>
 	<script type="text/javascript" src="../src/slider.min.js"></script>
 
+	<style>
+
+		.slider {
+			position: relative;
+			height: 300px;
+			width: 100%;
+			overflow: hidden;
+		}
+
+		.slider > ul {
+			position: absolute;
+			margin: 0;
+			padding: 0;
+			height: 300px;
+			list-style-type: none;
+			background-color: red;
+		}
+
+		.slider > ul li {
+			display: block;
+			float: left;
+			height: 300px;
+			background-size: cover;
+			background-position: center center;
+			background-repeat: no-repeat;
+		}
+
+	</style>
+
 </head>
 
 <body>
@@ -14,7 +43,15 @@
 			<li style="background-image: url('http://dummyimage.com/1440x500')"></li>
 			<li style="background-image: url('http://dummyimage.com/1440x500')"></li>
 			<li style="background-image: url('http://dummyimage.com/1440x500')"></li>
+			<li style="background-image: url('http://dummyimage.com/1440x500')"></li>
+			<li style="background-image: url('http://dummyimage.com/1440x500')"></li>
 		</ul>
 	</div>
+
+	<script>
+		$('document').ready(function(){
+			$('.slider').slider();
+		});
+	</script>
 
 </body>

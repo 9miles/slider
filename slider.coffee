@@ -1,7 +1,7 @@
 $ = jQuery
 
 $.fn.extend
-	Slider: (options) ->
+	slider: (options) ->
 		# Default Settings
 		settings =
 			animation: 'slide'
