@@ -33,9 +33,14 @@ $.fn.extend
 
 			list.css('width', "#{100*slides}%")
 
+			next = ->
+				if position < slides then position = position + 1 else position = 1
+				list.css('left', "-#{100 * (position-1)}%")
+
+			prev = ->
+				if position = 1 then position = slides else position = position - 1
+				list.css('left', "-#{100 * (position-1)}%")
+
 			$this.click (event) ->
 				do event.preventDefault
-
-				if position < slides then position = position + 1 else position = 1
-
-				list.css('left', "-#{100 * (position-1)}%")
+				do next
