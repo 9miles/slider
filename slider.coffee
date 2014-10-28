@@ -4,16 +4,9 @@ $.fn.extend
 	slider: (options) ->
 		# Default Settings
 		settings =
-			animation: 'slide'
-			speed: 500
-			delay: 3000
-			pause: true
-			loop: true
-			easing: 'ease'
 			debug: true
+			delay: 3000
 			autoplay: true
-			nextClass: 'slider-next'
-			prevClass: 'slider-prev'
 
 		settings = $.extend settings, options
 
@@ -35,11 +28,11 @@ $.fn.extend
 
 			next = ->
 				if position < slides then position = position + 1 else position = 1
-				list.css('left', "-#{100 * (position-1)}%")
 
-			prev = ->
-				if position = 1 then position = slides else position = position - 1
-				list.css('left', "-#{100 * (position-1)}%")
+				if Modernizr.csstransforms and Modernizr.csstransitions
+					list.css('transform', "translateX(-#{100 / slides * (position-1)}%)")
+				else
+					list.animate('left', "-#{100 * (position-1)}%")
 
 			$this.click (event) ->
 				do event.preventDefault
