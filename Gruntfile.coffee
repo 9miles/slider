@@ -29,17 +29,17 @@ module.exports = (grunt) ->
 					'src/slider.js': 'slider.coffee'
 
 		uglify:
-            options:
-                mangle: false
-            my_target:
-                files:
-                    "src/slider.min.js": ['src/slider.js']
+			options:
+				mangle: false
+			my_target:
+				files:
+					"src/slider.min.js": ['src/slider.js']
 
 		watch:
-            options:
-                livereload: true
-            coffee:
-                files: '*.coffee'
-                tasks: ['coffeelint', 'coffee', 'uglify']
+			options:
+				livereload: true
+			coffee:
+				files: '*.coffee'
+				tasks: ['coffeelint', 'coffee', 'uglify']
 
-	grunt.registerTask 'default', 'watch'
+	grunt.registerTask 'default', ['coffeelint', 'coffee', 'uglify', 'watch']
