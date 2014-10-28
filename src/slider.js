@@ -21,11 +21,11 @@
         }
       };
       return this.each(function() {
-        var $this, container, length, next, position, ratio, slides;
+        var $this, container, length, next, position, ratio, slide;
         $this = $(this);
         container = $this.find('ul');
-        slides = $this.find('ul li');
-        length = slides.length;
+        slide = $this.find('ul li');
+        length = slide.length;
         ratio = settings.height / settings.width * 100;
         if (settings.start <= length) {
           position = settings.start;
@@ -45,7 +45,7 @@
           'position': 'absolute',
           'transition': '.4s ease all'
         });
-        slides.css({
+        slide.css({
           'width': "" + (100 / length) + "%",
           'height': '100%',
           'display': 'block',

@@ -21,33 +21,30 @@ $.fn.extend
 			$this = $(@)
 
 			container = $this.find('ul')
-			slides = $this.find('ul li')
-			length = slides.length
+			slide = $this.find('ul li')
+			length = slide.length
 			ratio = settings.height / settings.width * 100
 
 			if settings.start <= length then position = settings.start else position = 1
 
-			$this.css(
+			$this.css
 				'width': '100%'
 				'overflow': 'hidden'
 				'height': 0
 				'padding-bottom': "#{ratio}%"
 				'position': 'relative'
-			)
 
-			container.css(
+			container.css
 				'width': "#{100*length}%"
 				'height': '100%'
 				'position': 'absolute'
 				'transition': '.4s ease all'
-				)
 
-			slides.css(
+			slide.css
 				'width': "#{100/length}%"
 				'height': '100%'
 				'display': 'block'
 				'float': 'left'
-				)
 
 			next = ->
 				if position < length then position = position + 1 else position = 1
@@ -57,10 +54,12 @@ $.fn.extend
 				else
 					container.animate('left', "-#{100 * (position-1)}%")
 
+			# Temporary measure to run the next function on click
 			$this.click (event) ->
 				do event.preventDefault
 				do next
 
+			# Autoplay
 			if settings.autoplay
 				setInterval ->
 					do next
