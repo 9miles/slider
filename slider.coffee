@@ -7,6 +7,7 @@ $.fn.extend
 		settings =
 			width: 16
 			height: 9
+			delay: 3000
 
 		# Methods
 		switch options
@@ -48,6 +49,21 @@ $.fn.extend
 					else
 						$this.slider('go', length)
 
+			# Play
+			when 'play'
+				return @each () ->
+					$this = $(@)
+					delay = $this.data 'delay'
+					playing = setInterval ->
+						$this.slider 'next'
+					, delay
+
+			# Pause
+			when 'pause'
+				return @each () ->
+					$this = $(@)
+					clearInterval playing # this isn't in the scope
+
 
 			# Initialise
 			else
@@ -74,3 +90,4 @@ $.fn.extend
 
 					$this.data('length', length)
 					$this.data('position', 1)
+					$this.data('delay', settings.delay)

@@ -8,7 +8,8 @@
       var settings;
       settings = {
         width: 16,
-        height: 9
+        height: 9,
+        delay: 3000
       };
       switch (options) {
         case 'go':
@@ -50,6 +51,21 @@
               return $this.slider('go', length);
             }
           });
+        case 'play':
+          return this.each(function() {
+            var $this, delay, playing;
+            $this = $(this);
+            delay = $this.data('delay');
+            return playing = setInterval(function() {
+              return $this.slider('next');
+            }, delay);
+          });
+        case 'pause':
+          return this.each(function() {
+            var $this;
+            $this = $(this);
+            return clearInterval(playing);
+          });
         default:
           settings = $.extend(settings, options);
           return this.each(function() {
@@ -70,7 +86,8 @@
               'width': "" + (100 / length) + "%"
             });
             $this.data('length', length);
-            return $this.data('position', 1);
+            $this.data('position', 1);
+            return $this.data('delay', settings.delay);
           });
       }
     }
