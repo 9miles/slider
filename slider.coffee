@@ -8,6 +8,8 @@ $.fn.extend
 			width: 16
 			height: 9
 			delay: 3000
+			autoplay: true
+			pause: true
 
 		# Methods
 		switch options
@@ -91,3 +93,12 @@ $.fn.extend
 					$this.data('length', length)
 					$this.data('position', 1)
 					$this.data('delay', settings.delay)
+
+					if settings.autoplay
+						$this.slider('play')
+
+						if settings.pause
+							$this.hover ->
+								$this.slider('pause')
+							, ->
+								$this.slider('play')

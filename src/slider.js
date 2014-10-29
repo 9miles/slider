@@ -9,7 +9,9 @@
       settings = {
         width: 16,
         height: 9,
-        delay: 3000
+        delay: 3000,
+        autoplay: true,
+        pause: true
       };
       switch (options) {
         case 'go':
@@ -87,7 +89,17 @@
             });
             $this.data('length', length);
             $this.data('position', 1);
-            return $this.data('delay', settings.delay);
+            $this.data('delay', settings.delay);
+            if (settings.autoplay) {
+              $this.slider('play');
+              if (settings.pause) {
+                return $this.hover(function() {
+                  return $this.slider('pause');
+                }, function() {
+                  return $this.slider('play');
+                });
+              }
+            }
           });
       }
     }
