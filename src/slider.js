@@ -11,10 +11,15 @@
         delay: 3000,
         autoplay: true,
         width: 16,
-        height: 9,
-        start: 1
+        height: 9
       };
-      settings = $.extend(settings, options);
+      if (typeof options === 'object') {
+        settings = $.extend(settings, options);
+      } else if (options === 'next') {
+        next();
+      } else if (options === 'prev' || options === 'previous') {
+        prev();
+      }
       log = function(msg) {
         if (settings.debug) {
           return typeof console !== "undefined" && console !== null ? console.log(msg) : void 0;
@@ -23,33 +28,20 @@
       return this.each(function() {
         var $this, container, go, length, next, position, prev, ratio, slide;
         $this = $(this);
-        container = $this.find('ul');
-        slide = $this.find('ul li');
+        container = $this.find('.slider-items');
+        slide = $this.find('.slider-item');
         length = slide.length;
         ratio = settings.height / settings.width * 100;
-        if (settings.start <= length) {
-          position = settings.start;
-        } else {
-          position = 1;
-        }
+        position = 1;
         $this.css({
           'width': '100%',
-          'overflow': 'hidden',
-          'height': 0,
-          'padding-bottom': "" + ratio + "%",
-          'position': 'relative'
+          'padding-bottom': "" + ratio + "%"
         });
         container.css({
-          'width': "" + (100 * length) + "%",
-          'height': '100%',
-          'position': 'absolute',
-          'transition': '.4s ease all'
+          'width': "" + (100 * length) + "%"
         });
         slide.css({
-          'width': "" + (100 / length) + "%",
-          'height': '100%',
-          'display': 'block',
-          'float': 'left'
+          'width': "" + (100 / length) + "%"
         });
         go = function(target) {
           if (target <= length) {
@@ -77,7 +69,7 @@
         };
         $this.click(function(event) {
           event.preventDefault();
-          return prev();
+          return next();
         });
         if (settings.autoplay) {
           return setInterval(function() {

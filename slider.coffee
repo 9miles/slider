@@ -9,9 +9,13 @@ $.fn.extend
 			autoplay: true
 			width: 16
 			height: 9
-			start: 1
 
-		settings = $.extend settings, options
+		if typeof options == 'object'
+			settings = $.extend settings, options
+		else if options == 'next'
+			do next
+		else if options == 'prev' or options == 'previous'
+			do prev
 
 		log = (msg) ->
 			console?.log msg if settings.debug
@@ -19,41 +23,28 @@ $.fn.extend
 		return @each () ->
 
 			$this = $(@)
-
-			container = $this.find('ul')
-			slide = $this.find('ul li')
+			container = $this.find('.slider-items')
+			slide = $this.find('.slider-item')
 			length = slide.length
 			ratio = settings.height / settings.width * 100
-
-			if settings.start <= length then position = settings.start else position = 1
+			position = 1
 
 			$this.css
 				'width': '100%'
-				'overflow': 'hidden'
-				'height': 0
 				'padding-bottom': "#{ratio}%"
-				'position': 'relative'
 
 			container.css
 				'width': "#{100*length}%"
-				'height': '100%'
-				'position': 'absolute'
-				'transition': '.4s ease all'
 
 			slide.css
 				'width': "#{100/length}%"
-				'height': '100%'
-				'display': 'block'
-				'float': 'left'
 
 			go = (target) ->
 				if target <= length
-
 					if Modernizr.csstransforms and Modernizr.csstransitions
 						container.css('transform', "translateX(-#{100 / length * (target-1)}%)")
 					else
 						container.animate('left', "-#{100 * (target-1)}%")
-
 					position = target
 
 			next = ->
@@ -65,7 +56,7 @@ $.fn.extend
 			# Temporary measure to run the next function on click
 			$this.click (event) ->
 				do event.preventDefault
-				do prev
+				do next
 
 			# Autoplay
 			if settings.autoplay

@@ -1,22 +1,15 @@
 <head>
 
+	<link rel="stylesheet" href="../src/slider.css">
 	<script type="text/javascript" src="_bower.js"></script>
 	<script type="text/javascript" src="../src/slider.min.js"></script>
 
 	<style>
-
-		.slider ul {
-			margin: 0;
-			padding: 0;
-			list-style-type: none;
-		}
-
-		.slider ul li {
+		.slider-item {
 			background-size: cover;
 			background-position: center center;
 			background-repeat: no-repeat;
 		}
-
 	</style>
 
 </head>
@@ -24,36 +17,23 @@
 <body>
 
 	<div class="slider">
-		<ul>
-			<li style="background-image: url('http://dummyimage.com/1440x400&text=Slide1')"></li>
-			<li style="background-image: url('http://dummyimage.com/1440x400&text=Slide2')"></li>
-			<li style="background-image: url('http://dummyimage.com/1440x400&text=Slide3')"></li>
-			<li style="background-image: url('http://dummyimage.com/1440x400&text=Slide4')"></li>
-			<li style="background-image: url('http://dummyimage.com/1440x400&text=Slide5')"></li>
-			<li style="background-image: url('http://dummyimage.com/1440x400&text=Slide6')"></li>
-			<li style="background-image: url('http://dummyimage.com/1440x400&text=Slide7')"></li>
-			<li style="background-image: url('http://dummyimage.com/1440x400&text=Slide8')"></li>
-			<li style="background-image: url('http://dummyimage.com/1440x400&text=Slide9')"></li>
-			<li style="background-image: url('http://dummyimage.com/1440x400&text=Slide10')"></li>
-		</ul>
+		<div class="slider-items">
+			<div class="slider-item" style="background-image: url('http://dummyimage.com/1440x400&text=Slide1')"></div>
+			<div class="slider-item" style="background-image: url('http://dummyimage.com/1440x400&text=Slide2')"></div>
+			<div class="slider-item" style="background-image: url('http://dummyimage.com/1440x400&text=Slide3')"></div>
+		</div>
 	</div>
 
 	<a href="#" class="slider-next">Next</a>
 	<a href="#" class="slider-prev">Prev</a>
 
-	<script>
+	<script type="text/javascript">
 		$('document').ready(function(){
-			$('.slider').slider({
-				width: 1440,
-				height: 500
-			});
+			$('.slider').slider();
+
 			$('.slider-next').click(function(event){
 				event.preventDefault();
-				$('.slider').slider(next);
-			});
-			$('.slider-next').click(function(event){
-				event.preventDefault();
-				$('.slider').slider(prev);
+				$('.slider').slider('next');
 			});
 		});
 	</script>

@@ -1,0 +1,16 @@
+.slider {
+	overflow: hidden;
+	height: 0;
+	position: relative;
+}
+
+.slider-items {
+	height: 100%;
+	position: absolute;
+	transition: .5s ease all;
+}
+
+.slider-item {
+	height: 100%;
+	float: left;
+}
