@@ -10,6 +10,7 @@ $.fn.extend
 			delay: 3000
 			autoplay: true
 			pause: true
+			pagination: true
 
 		# Methods
 		switch options
@@ -26,6 +27,9 @@ $.fn.extend
 						else
 							container.css('left', "-#{100 * (target-1)}%")
 						$this.data('position', target)
+						$this.find(".slider-pagination li:nth-child(#{target})")
+							.addClass('active')
+							.siblings().removeClass('active')
 
 			# Next
 			when 'next'
@@ -75,12 +79,13 @@ $.fn.extend
 
 				return @each () ->
 					$this = $(@)
+					viewport = $this.find('.slider-viewport')
 					container = $this.find('.slider-items')
 					slide = $this.find('.slider-item')
 					length = slide.length
 					ratio = settings.height / settings.width * 100
 
-					$this.css
+					viewport.css
 						'width': '100%'
 						'padding-bottom': "#{ratio}%"
 
@@ -93,6 +98,13 @@ $.fn.extend
 					$this.data('length', length)
 					$this.data('position', 1)
 					$this.data('delay', settings.delay)
+
+					if settings.pagination
+						$this.append "<ol class='slider-pagination'>"
+						pagination = $this.find('.slider-pagination')
+						pagination.append("<li>#{num}</li>") for num in [1..length]
+						$this.find('.slider-pagination li').click ->
+							$this.slider('go', $(@).index() + 1)
 
 					if settings.autoplay
 						$this.slider('play')

@@ -11,7 +11,8 @@
         height: 9,
         delay: 3000,
         autoplay: true,
-        pause: true
+        pause: true,
+        pagination: true
       };
       switch (options) {
         case 'go':
@@ -26,7 +27,8 @@
               } else {
                 container.css('left', "-" + (100 * (target - 1)) + "%");
               }
-              return $this.data('position', target);
+              $this.data('position', target);
+              return $this.find(".slider-pagination li:nth-child(" + target + ")").addClass('active').siblings().removeClass('active');
             }
           });
         case 'next':
@@ -71,13 +73,14 @@
         default:
           settings = $.extend(settings, options);
           return this.each(function() {
-            var $this, container, length, ratio, slide;
+            var $this, container, length, num, pagination, ratio, slide, viewport, _i;
             $this = $(this);
+            viewport = $this.find('.slider-viewport');
             container = $this.find('.slider-items');
             slide = $this.find('.slider-item');
             length = slide.length;
             ratio = settings.height / settings.width * 100;
-            $this.css({
+            viewport.css({
               'width': '100%',
               'padding-bottom': "" + ratio + "%"
             });
@@ -90,6 +93,16 @@
             $this.data('length', length);
             $this.data('position', 1);
             $this.data('delay', settings.delay);
+            if (settings.pagination) {
+              $this.append("<ol class='slider-pagination'>");
+              pagination = $this.find('.slider-pagination');
+              for (num = _i = 1; 1 <= length ? _i <= length : _i >= length; num = 1 <= length ? ++_i : --_i) {
+                pagination.append("<li>" + num + "</li>");
+              }
+              $this.find('.slider-pagination li').click(function() {
+                return $this.slider('go', $(this).index() + 1);
+              });
+            }
             if (settings.autoplay) {
               $this.slider('play');
               if (settings.pause) {

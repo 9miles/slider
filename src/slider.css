@@ -1,4 +1,4 @@
-.slider {
+.slider-viewport {
 	overflow: hidden;
 	height: 0;
 	position: relative;
@@ -13,4 +13,27 @@
 .slider-item {
 	height: 100%;
 	float: left;
+}
+
+.slider-pagination {
+	display: block;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+
+.slider-pagination li {
+	display: inline-block;
+	background-color: #999;
+	width: 10px;
+	height: 10px;
+	border-radius: 100%;
+	text-indent: -999em;
+	font-size: 0;
+	margin: 10px 5px;
+	cursor: pointer;
+}
+
+.slider-pagination li.active {
+	background-color: #333;
 }
