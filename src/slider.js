@@ -53,18 +53,18 @@
           });
         case 'play':
           return this.each(function() {
-            var $this, delay, playing;
+            var $this, delay;
             $this = $(this);
             delay = $this.data('delay');
-            return playing = setInterval(function() {
+            return $this.data('playing', setInterval(function() {
               return $this.slider('next');
-            }, delay);
+            }, delay));
           });
         case 'pause':
           return this.each(function() {
             var $this;
             $this = $(this);
-            return clearInterval(playing);
+            return clearInterval($this.data('playing'));
           });
         default:
           settings = $.extend(settings, options);

@@ -54,15 +54,15 @@ $.fn.extend
 				return @each () ->
 					$this = $(@)
 					delay = $this.data 'delay'
-					playing = setInterval ->
+					$this.data('playing', setInterval ->
 						$this.slider 'next'
-					, delay
+					, delay)
 
 			# Pause
 			when 'pause'
 				return @each () ->
 					$this = $(@)
-					clearInterval playing # this isn't in the scope
+					clearInterval $this.data('playing')
 
 
 			# Initialise
