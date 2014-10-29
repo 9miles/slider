@@ -4,7 +4,7 @@ A very simple jQuery slider.
 
 ## Using Slider
 
-Include `slider.js` and `slider.css`. Or install with bower `$ bower install http://github.com/9miles/Slider`
+Include `slider.js` and `slider.css`. Or install with bower `$ bower install https://github.com/9miles/Slider`
 
 HTML
 
@@ -14,7 +14,7 @@ HTML
 		<div class="slider-item">Slide 1</div>
 		<div class="slider-item">Slide 2</div>
 		<div class="slider-item">Slide 3</div>
-  </div>
+	</div>
 </div>
 ```
 
