@@ -2,3 +2,4 @@
 /bower_components/*
 _bower*
 /src/*min*
+*.zip
