@@ -47,6 +47,7 @@
 	text-indent: -999em;
 	font-size: 0;
 	border: 15px solid transparent;
+	cursor: pointer;
 }
 
 .slider-prev {

@@ -13,7 +13,8 @@
         autoplay: true,
         pause: true,
         pagination: true,
-        buttons: true
+        buttons: true,
+        looping: true
       };
       switch (options) {
         case 'go':
@@ -40,7 +41,7 @@
             position = $this.data('position');
             if (position < length) {
               return $this.slider('go', position + 1);
-            } else {
+            } else if (looping) {
               return $this.slider('go', 1);
             }
           });
@@ -52,7 +53,7 @@
             position = $this.data('position');
             if (position > 1) {
               return $this.slider('go', position - 1);
-            } else {
+            } else if (looping) {
               return $this.slider('go', length);
             }
           });
@@ -100,6 +101,7 @@
               for (num = _i = 1; 1 <= length ? _i <= length : _i >= length; num = 1 <= length ? ++_i : --_i) {
                 pagination.append("<li>" + num + "</li>");
               }
+              $this.find('.slider-pagination li:first-child').addClass('active');
               $this.find('.slider-pagination li').click(function() {
                 return $this.slider('go', $(this).index() + 1);
               });

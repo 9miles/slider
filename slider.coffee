@@ -12,6 +12,7 @@ $.fn.extend
 			pause: true
 			pagination: true
 			buttons: true
+			looping: true
 
 		# Methods
 		switch options
@@ -41,7 +42,7 @@ $.fn.extend
 
 					if position < length
 						$this.slider('go', position + 1)
-					else
+					else if looping
 						$this.slider('go', 1)
 
 			# Previous
@@ -53,7 +54,7 @@ $.fn.extend
 
 					if position > 1
 						$this.slider('go', position - 1)
-					else
+					else if looping
 						$this.slider('go', length)
 
 			# Play
@@ -105,6 +106,7 @@ $.fn.extend
 						$this.append "<ol class='slider-pagination'>"
 						pagination = $this.find('.slider-pagination')
 						pagination.append("<li>#{num}</li>") for num in [1..length]
+						$this.find('.slider-pagination li:first-child').addClass('active')
 						$this.find('.slider-pagination li').click ->
 							$this.slider('go', $(@).index() + 1)
 
