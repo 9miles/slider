@@ -5,7 +5,10 @@
   "authors": [
     "9miles Media"
   ],
-  "main": "src/slider.js",
+  "main": [
+      "src/slider.js",
+      "src/slider.css"
+  ],
   "keywords": [
     "carousel",
     "slider",
