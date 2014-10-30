@@ -26,22 +26,9 @@
 		</div>
 	</div>
 
-	<a href="#" class="slider-next">Next</a>
-	<a href="#" class="slider-prev">Prev</a>
-
 	<script type="text/javascript">
 		$('document').ready(function(){
 			$('.slider').slider();
-
-			$('.slider-next').click(function(event){
-				event.preventDefault();
-				$('.slider').slider('next');
-			});
-
-			$('.slider-prev').click(function(event){
-				event.preventDefault();
-				$('.slider').slider('prev');
-			});
 		});
 	</script>
 

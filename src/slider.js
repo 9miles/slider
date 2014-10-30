@@ -12,7 +12,8 @@
         delay: 3000,
         autoplay: true,
         pause: true,
-        pagination: true
+        pagination: true,
+        buttons: true
       };
       switch (options) {
         case 'go':
@@ -101,6 +102,18 @@
               }
               $this.find('.slider-pagination li').click(function() {
                 return $this.slider('go', $(this).index() + 1);
+              });
+            }
+            if (settings.buttons) {
+              viewport.append("<div class='slider-prev'>Prev</div>");
+              viewport.append("<div class='slider-next'>Next</div>");
+              $this.find('.slider-prev').click(function(event) {
+                event.preventDefault();
+                return $this.slider('prev');
+              });
+              $this.find('.slider-next').click(function(event) {
+                event.preventDefault();
+                return $this.slider('next');
               });
             }
             if (settings.autoplay) {

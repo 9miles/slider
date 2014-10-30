@@ -37,3 +37,24 @@
 .slider-pagination li.active {
 	background-color: #333;
 }
+
+.slider-prev, .slider-next {
+	position: absolute;
+	top: 50%;
+	margin-top: -15px;
+	width: 0;
+	height: 0;
+	text-indent: -999em;
+	font-size: 0;
+	border: 15px solid transparent;
+}
+
+.slider-prev {
+	left: 15px;
+	border-right-color: #fff;
+}
+
+.slider-next {
+	right: 15px;
+	border-left-color: #fff;
+}

@@ -11,6 +11,7 @@ $.fn.extend
 			autoplay: true
 			pause: true
 			pagination: true
+			buttons: true
 
 		# Methods
 		switch options
@@ -99,6 +100,7 @@ $.fn.extend
 					$this.data('position', 1)
 					$this.data('delay', settings.delay)
 
+					# Pagination
 					if settings.pagination
 						$this.append "<ol class='slider-pagination'>"
 						pagination = $this.find('.slider-pagination')
@@ -106,6 +108,20 @@ $.fn.extend
 						$this.find('.slider-pagination li').click ->
 							$this.slider('go', $(@).index() + 1)
 
+					# Buttons
+					if settings.buttons
+						viewport.append "<div class='slider-prev'>Prev</div>"
+						viewport.append "<div class='slider-next'>Next</div>"
+
+						$this.find('.slider-prev').click (event) ->
+							do event.preventDefault
+							$this.slider 'prev'
+
+						$this.find('.slider-next').click (event) ->
+							do event.preventDefault
+							$this.slider 'next'
+
+					# Autoplay
 					if settings.autoplay
 						$this.slider('play')
 
