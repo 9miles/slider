@@ -14,7 +14,8 @@
         pause: true,
         pagination: true,
         buttons: true,
-        looping: true
+        looping: true,
+        arrowkeys: true
       };
       switch (options) {
         case 'go':
@@ -121,12 +122,22 @@
             if (settings.autoplay) {
               $this.slider('play');
               if (settings.pause) {
-                return $this.hover(function() {
+                $this.hover(function() {
                   return $this.slider('pause');
                 }, function() {
                   return $this.slider('play');
                 });
               }
+            }
+            if (arrowkeys) {
+              return $(document).keydown(function(event) {
+                switch (event.which) {
+                  case 39:
+                    return $this.slider('next');
+                  case 37:
+                    return $this.slider('prev');
+                }
+              });
             }
           });
       }

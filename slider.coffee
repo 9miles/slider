@@ -13,6 +13,7 @@ $.fn.extend
 			pagination: true
 			buttons: true
 			looping: true
+			arrowkeys: true
 
 		# Methods
 		switch options
@@ -132,3 +133,13 @@ $.fn.extend
 								$this.slider('pause')
 							, ->
 								$this.slider('play')
+
+
+					# Keyboard
+					if arrowkeys
+						$(document).keydown (event) ->
+							switch event.which
+								when 39
+									$this.slider('next')
+								when 37
+									$this.slider('prev')
