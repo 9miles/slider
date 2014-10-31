@@ -7,55 +7,9 @@
 .slider-items {
 	height: 100%;
 	position: absolute;
-	transition: .5s ease all;
 }
 
 .slider-item {
 	height: 100%;
 	float: left;
-}
-
-.slider-pagination {
-	display: block;
-	margin: 0;
-	padding: 0;
-	text-align: center;
-}
-
-.slider-pagination li {
-	display: inline-block;
-	background-color: #999;
-	width: 10px;
-	height: 10px;
-	border-radius: 100%;
-	text-indent: -999em;
-	font-size: 0;
-	margin: 10px 5px;
-	cursor: pointer;
-}
-
-.slider-pagination li.active {
-	background-color: #333;
-}
-
-.slider-prev, .slider-next {
-	position: absolute;
-	top: 50%;
-	margin-top: -15px;
-	width: 0;
-	height: 0;
-	text-indent: -999em;
-	font-size: 0;
-	border: 15px solid transparent;
-	cursor: pointer;
-}
-
-.slider-prev {
-	left: 15px;
-	border-right-color: #fff;
-}
-
-.slider-next {
-	right: 15px;
-	border-left-color: #fff;
 }
