@@ -137,7 +137,7 @@ $.fn.extend
 
 
 					# Keyboard
-					if arrowkeys
+					if settings.arrowkeys
 						$(document).keydown (event) ->
 							switch event.which
 								when 39
