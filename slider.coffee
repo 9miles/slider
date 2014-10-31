@@ -43,7 +43,7 @@ $.fn.extend
 
 					if position < length
 						$this.slider('go', position + 1)
-					else if looping
+					else if settings.looping
 						$this.slider('go', 1)
 
 			# Previous
@@ -55,7 +55,7 @@ $.fn.extend
 
 					if position > 1
 						$this.slider('go', position - 1)
-					else if looping
+					else if settings.looping
 						$this.slider('go', length)
 
 			# Play
