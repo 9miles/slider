@@ -1,11 +1,13 @@
 (function() {
-  var $;
+  var $,
+    __slice = [].slice;
 
   $ = jQuery;
 
   $.fn.extend({
-    slider: function(options, target) {
-      var settings;
+    slider: function() {
+      var method, parameters, settings;
+      method = arguments[0], parameters = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
       settings = {
         width: 16,
         height: 9,
@@ -17,13 +19,14 @@
         looping: true,
         arrowkeys: true
       };
-      switch (options) {
+      switch (method) {
         case 'go':
           return this.each(function() {
-            var $this, container, length;
+            var $this, container, length, target;
             $this = $(this);
             length = $this.data('length');
             container = $this.find('.slider-items');
+            target = parameters[0];
             if (target <= length) {
               if (Modernizr.csstransforms && Modernizr.csstransitions) {
                 container.css('transform', "translateX(-" + (100 / length * (target - 1)) + "%)");
@@ -42,7 +45,7 @@
             position = $this.data('position');
             if (position < length) {
               return $this.slider('go', position + 1);
-            } else if (looping) {
+            } else if (settings.looping) {
               return $this.slider('go', 1);
             }
           });
@@ -54,7 +57,7 @@
             position = $this.data('position');
             if (position > 1) {
               return $this.slider('go', position - 1);
-            } else if (looping) {
+            } else if (settings.looping) {
               return $this.slider('go', length);
             }
           });
@@ -74,7 +77,7 @@
             return clearInterval($this.data('playing'));
           });
         default:
-          settings = $.extend(settings, options);
+          settings = $.extend(settings, method);
           return this.each(function() {
             var $this, container, length, num, pagination, ratio, slide, viewport, _i;
             $this = $(this);

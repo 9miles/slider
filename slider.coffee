@@ -1,7 +1,7 @@
 $ = jQuery
 
 $.fn.extend
-	slider: (options, target) ->
+	slider: (method, parameters...) ->
 
 		# Default Settings
 		settings =
@@ -16,7 +16,7 @@ $.fn.extend
 			arrowkeys: true
 
 		# Methods
-		switch options
+		switch method
 
 			# Go
 			when 'go'
@@ -24,6 +24,7 @@ $.fn.extend
 					$this = $(@)
 					length = $this.data('length')
 					container = $this.find('.slider-items')
+					target = parameters[0]
 					if target <= length
 						if Modernizr.csstransforms and Modernizr.csstransitions
 							container.css('transform', "translateX(-#{100 / length * (target-1)}%)")
@@ -78,7 +79,7 @@ $.fn.extend
 			else
 
 				# Merge default settings with options.
-				settings = $.extend settings, options
+				settings = $.extend settings, method
 
 				return @each () ->
 					$this = $(@)
