@@ -132,7 +132,7 @@
                 });
               }
             }
-            if (arrowkeys) {
+            if (settings.arrowkeys) {
               return $(document).keydown(function(event) {
                 switch (event.which) {
                   case 39:
