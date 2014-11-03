@@ -22,11 +22,12 @@
       switch (method) {
         case 'go':
           return this.each(function() {
-            var $this, container, length, target;
+            var $this, callback, container, length, target;
             $this = $(this);
             length = $this.data('length');
             container = $this.find('.slider-items');
             target = parameters[0];
+            callback = $this.data('callback');
             if (target <= length) {
               if (Modernizr.csstransforms && Modernizr.csstransitions) {
                 container.css('transform', "translateX(-" + (100 / length * (target - 1)) + "%)");
@@ -34,7 +35,8 @@
                 container.css('left', "-" + (100 * (target - 1)) + "%");
               }
               $this.data('position', target);
-              return $this.find(".slider-pagination li:nth-child(" + target + ")").addClass('active').siblings().removeClass('active');
+              $this.find(".slider-pagination li:nth-child(" + target + ")").addClass('active').siblings().removeClass('active');
+              return callback(target)();
             }
           });
         case 'next':
@@ -99,6 +101,7 @@
             $this.data('length', length);
             $this.data('position', 1);
             $this.data('delay', settings.delay);
+            $this.data('callback', parameters[0]);
             if (settings.pagination) {
               $this.append("<ol class='slider-pagination'>");
               pagination = $this.find('.slider-pagination');

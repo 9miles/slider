@@ -25,6 +25,7 @@ $.fn.extend
 					length = $this.data('length')
 					container = $this.find('.slider-items')
 					target = parameters[0]
+					callback = $this.data('callback')
 					if target <= length
 						if Modernizr.csstransforms and Modernizr.csstransitions
 							container.css('transform', "translateX(-#{100 / length * (target-1)}%)")
@@ -34,6 +35,7 @@ $.fn.extend
 						$this.find(".slider-pagination li:nth-child(#{target})")
 							.addClass('active')
 							.siblings().removeClass('active')
+						do callback(target)
 
 			# Next
 			when 'next'
@@ -102,6 +104,7 @@ $.fn.extend
 					$this.data('length', length)
 					$this.data('position', 1)
 					$this.data('delay', settings.delay)
+					$this.data('callback', parameters[0])
 
 					# Pagination
 					if settings.pagination

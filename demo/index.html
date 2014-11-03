@@ -78,7 +78,7 @@
 
 	<script type="text/javascript">
 		$('document').ready(function(){
-			$('.slider').slider();
+			$('.slider').slider({}, function(position){alert('Slider moved to position:' + position)});
 		});
 	</script>
 
