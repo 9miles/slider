@@ -15,7 +15,6 @@ $.fn.extend
 			looping: true
 			arrowkeys: true
 
-		# Methods
 		switch method
 
 			# Go
@@ -76,7 +75,6 @@ $.fn.extend
 					$this = $(@)
 					clearInterval $this.data('playing')
 
-
 			# Initialise
 			else
 
@@ -101,10 +99,11 @@ $.fn.extend
 					slide.css
 						'width': "#{100/length}%"
 
-					$this.data('length', length)
-					$this.data('position', 1)
-					$this.data('delay', settings.delay)
-					$this.data('callback', parameters[0])
+					$this
+						.data('length', length)
+						.data('position', 1)
+						.data('delay', settings.delay)
+						.data('callback', parameters[0])
 
 					# Pagination
 					if settings.pagination
@@ -137,7 +136,6 @@ $.fn.extend
 								$this.slider('pause')
 							, ->
 								$this.slider('play')
-
 
 					# Keyboard
 					if settings.arrowkeys

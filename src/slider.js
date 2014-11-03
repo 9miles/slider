@@ -98,10 +98,7 @@
             slide.css({
               'width': "" + (100 / length) + "%"
             });
-            $this.data('length', length);
-            $this.data('position', 1);
-            $this.data('delay', settings.delay);
-            $this.data('callback', parameters[0]);
+            $this.data('length', length).data('position', 1).data('delay', settings.delay).data('callback', parameters[0]);
             if (settings.pagination) {
               $this.append("<ol class='slider-pagination'>");
               pagination = $this.find('.slider-pagination');
